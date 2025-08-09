@@ -1,8 +1,11 @@
 # 🌀 Fourier Drawing com Epiciclos
 
-Este projeto transforma imagens vetoriais (SVG) em animações hipnotizantes usando **epiciclos**, que são círculos girando dentro de outros círculos. Através do poder da **Série de Fourier**, decompomos o contorno de uma imagem em um conjunto de vetores rotativos que, quando somados, recriam o desenho original de forma contínua e elegante.
+Este projeto transforma imagens vetoriais (SVG) em animações usando **epiciclos**, que são círculos girando dentro de outros círculos. Através do poder da **Série de Fourier**, decompomos o contorno de uma imagem em um conjunto de vetores rotativos que, quando somados, recriam o desenho original de forma contínua e elegante.
 
-![Animação de Epiciclos](example.gif)
+<div align="center">
+  <img src="example.gif" width="300" alt="Animação de Epiciclos" />
+</div>
+
 -----
 ## ✨ O Conceito por Trás da Mágica
 
