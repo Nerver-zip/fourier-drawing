@@ -2,6 +2,7 @@
 
 Este projeto transforma imagens vetoriais (SVG) em animações hipnotizantes usando **epiciclos**, que são círculos girando dentro de outros círculos. Através do poder da **Série de Fourier**, decompomos o contorno de uma imagem em um conjunto de vetores rotativos que, quando somados, recriam o desenho original de forma contínua e elegante.
 
+![Animação de Epiciclos](example.gif)
 -----
 ## ✨ O Conceito por Trás da Mágica
 
@@ -12,7 +13,25 @@ Ao combinar dezenas ou centenas desses epiciclos, onde o centro de um círculo e
 1.  Extrai os pontos de uma imagem SVG.
 2.  Aplica a **Transformada Discreta de Fourier (DFT)** para encontrar os coeficientes (frequência, amplitude e fase) de cada epiciclo.
 3.  Usa esses coeficientes para gerar uma animação que reconstrói a imagem.
-
+-----
+## 📂 Estrutura do Projeto
+```
+├── Makefile                # Script para build, processamento e execução
+├── doc.pdf                 # Documentação do projeto
+├── README.md               
+├── LICENSE                 # Licença do projeto
+├── requirements.txt        # Dependências Python
+├── svg/                    # Arquivos SVG usados para entrada (formas vetoriais)
+├── src/
+│   ├── cpp/
+│   │   ├── bin/            # Local para binários compilados
+│   │   ├── DFT.cpp         # Código C++ que calcula a Transformada de Fourier discreta
+│   │   ├── input.csv       # Contém os pontos 2D extraídos do SVG
+│   │   ├── output.json     # Contém os coeficientes da série de Fourier gerados aplicando DFT nos pontos 2D
+│   ├── python/
+│   │   ├── animar_fourier.py   # Script para visualização animada dos coeficientes de Fourier
+│   │   ├── parser.py           # Script para ler SVG e gerar arquivo CSV de pontos
+```
 ## 🛠️ Dependências
 
 Para executar este projeto, você precisará dos seguintes componentes:
@@ -80,36 +99,26 @@ Se você já gerou o arquivo de coeficientes (`output.json`) e quer apenas visua
 ```bash
 make run
 ```
-
-### O que Acontece por Baixo dos Panos?
-
-O comando `make` orquestra o seguinte fluxo de trabalho:
-
-1.  **🐍 Parser Python**: O script `parser.py` lê o arquivo `.svg`, extrai as coordenadas dos caminhos e as salva em formato `.csv`.
-2.  **⚙️ Processador C++**: O programa C++ lê o `.csv`, calcula a Transformada Discreta de Fourier (DFT) sobre os pontos e salva os coeficientes (amplitude, frequência e fase) em um arquivo `output.json`.
-3.  **🎨 Animação Python**: O script `animar_fourier.py` lê o arquivo `.json` e utiliza a biblioteca `matplotlib` para renderizar a animação dos epiciclos em tempo real.
-
 ## 🎨 Customização
 
 Você pode facilmente usar suas próprias imagens\!
 
   - **Adicione seu SVG**: Coloque seu arquivo `.svg` na pasta `svg/`.
   - **Execute o Makefile**: Rode `make nome_do_seu_arquivo` para processá-lo.
-  - **Ajuste de Parâmetros**: Para obter mais ou menos detalhes na aproximação, você pode ajustar a quantidade de pontos amostrados no `svg_parser.py` e o número de epiciclos a serem animados em `animar_fourier.py`.
+  - **Ajuste de Parâmetros**: Para obter mais ou menos detalhes na aproximação, você pode ajustar a quantidade de pontos amostrados no `parser.py` e o número de epiciclos a serem animados em `animar_fourier.py`.
   - **Recomendações**: Recomenda-se o uso de line arts simples para melhor performance e resultado.
 -----   
-
 ## 📚 Momento cultural
 
 Este projeto implementa a DFT (Transformada Discreta de Fourier) de forma direta, com complexidade O(n²), que é o coração matemático da representação por epiciclos.
 
 A Transformada Rápida de Fourier (FFT), uma versão otimizada com complexidade O(n log n), revolucionou a ciência e a engenharia ao permitir o processamento eficiente de sinais, imagens e dados em diversas áreas, desde compressão de áudio e vídeo até comunicação digital.
 
-Mais importante ainda, conforme explicado no canal Veritasium no vídeo *“The Most Important Algorithm Of All Time”*, a FFT desempenhou um papel crucial na história mundial ao ajudar a detectar testes nucleares secretos. Essa capacidade de analisar rapidamente sinais sísmicos ajudou a evitar uma possível escalada da corrida armamentista nuclear durante a Guerra Fria, mostrando como um avanço matemático pode ter impacto direto na paz global.
+Mais importante ainda, conforme explicado no canal Veritasium no vídeo [*The Most Important Algorithm Of All Time*](https://www.youtube.com/watch?v=nmgFG7PUHfo), a FFT desempenhou um papel crucial na história mundial ao ajudar a detectar testes nucleares secretos. Essa capacidade de analisar rapidamente sinais sísmicos ajudou a evitar uma possível escalada da corrida armamentista nuclear durante a Guerra Fria, mostrando como um avanço matemático pode ter impacto direto na paz global.
 
 Assim como a FFT transformou nosso mundo moderno, explorar as séries de Fourier e suas aplicações artísticas é um convite para entender como a matemática pode modelar e criar beleza.
 
 Referência cultural:  
-- Vídeo do Veritasium: [The Most Important Algorithm Of All Time](https://www.youtube.com/watch?v=nmgFG7PUHfo)
+[![The Most Important Algorithm Of All Time - Veritasium](https://img.youtube.com/vi/nmgFG7PUHfo/0.jpg)](https://www.youtube.com/watch?v=nmgFG7PUHfo)
 -----
-***Divirta-se explorando as formas com epiciclos e Séries de Fourier\!***
+***Divirta-se explorando as formas com epiciclos e Séries de Fourier!***
